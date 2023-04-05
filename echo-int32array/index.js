@@ -252,7 +252,8 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { echoInt32Array, echoInt32ArrayAsync } = nativeBinding
+const { echoInt32Array, echoInt32ArrayAsync, echoInt32ArrayAsArrayAsync } = nativeBinding
 
 module.exports.echoInt32Array = echoInt32Array
 module.exports.echoInt32ArrayAsync = echoInt32ArrayAsync
+module.exports.echoInt32ArrayAsArrayAsync = echoInt32ArrayAsArrayAsync

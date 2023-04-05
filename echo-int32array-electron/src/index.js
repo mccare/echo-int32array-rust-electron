@@ -1,30 +1,9 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
-const { echoInt32ArrayAsync, echoInt32Array } = require('echo-int32array');
-
-async function runEchoInt32ArrayAsync() {
-  const input = [
-    Int32Array.from([1, 2, 3, 4]),
-    Int32Array.from([10, 20, 30, 40]),
-    Int32Array.from([100, 200, 300, 400]),
-    Int32Array.from([1000000, 2000000, 3000000, 400000])
-  ]
-  const result = await echoInt32ArrayAsync(input);
-  console.log("Echoint32ArrayAsync result", result);
-}
-runEchoInt32ArrayAsync().catch(e => console.error(e));
-
-function runEchoInt32Array() {
-  const input = [
-    Int32Array.from([1, 2, 3, 4]),
-    Int32Array.from([10, 20, 30, 40]),
-    Int32Array.from([100, 200, 300, 400]),
-    Int32Array.from([1000000, 2000000, 3000000, 400000])
-  ]
-  const result =  echoInt32Array(input);
-  console.log("Echoint32Array result", result);
-}
+const { runEchoInt32ArrayAsync, runEchoInt32Array, runEchoInt32ArrayAsArrayAsync } = require('./echoArray')
 runEchoInt32Array()
+runEchoInt32ArrayAsync().catch(e => console.error(e));
+runEchoInt32ArrayAsArrayAsync().catch(e => console.error(e));
 
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -74,3 +53,4 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+

@@ -58,3 +58,49 @@ impl Task for AsyncEchoPathsTask {
     return Ok(result);
   }
 }
+
+
+
+#[napi]
+pub fn echo_int32array_as_array_async(
+  some_input_coordinates: Vec<Int32Array>,
+) -> AsyncTask<AsyncEchoArrayTask> {
+  let task = AsyncEchoArrayTask {
+    input_coordinates: some_input_coordinates,
+  };
+  return AsyncTask::new(task);
+}
+
+pub struct AsyncEchoArrayTask {
+  input_coordinates: Vec<Int32Array>,
+}
+
+impl Task for AsyncEchoArrayTask {
+  type Output = Vec<Vec<i32>>;
+  type JsValue = Vec<Vec<i32>>;
+
+  fn compute(&mut self) -> Result<Self::Output> {
+    let mut result: Vec<Vec<i32>> = Vec::new();
+    for row in &self.input_coordinates {
+      let mut new_row: Vec<i32> = Vec::new();
+      for element in &row.to_vec() {
+        new_row.push(element.clone());
+      }
+      result.push(new_row);
+    }
+    Ok(result)
+  }
+
+  // convert Vec<Vec<i32>> -> javascript array of arrays
+  fn resolve(&mut self, _: Env, output: Self::Output) -> Result<Self::JsValue> {
+    let mut result = Vec::new();
+    for row in output {
+      let mut js_row:Vec<i32> = Vec::new();
+      for element in row {
+        js_row.push(element);
+      }
+      result.push(js_row);
+    }
+    return Ok(result);
+  }
+}

@@ -5,3 +5,4 @@
 
 export function echoInt32Array(someInputCoordinates: Array<Int32Array>): Array<Int32Array>
 export function echoInt32ArrayAsync(someInputCoordinates: Array<Int32Array>): Promise<unknown>
+export function echoInt32ArrayAsArrayAsync(someInputCoordinates: Array<Int32Array>): Promise<unknown>

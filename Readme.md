@@ -1,5 +1,8 @@
 # Int32Array is not transfered correctly in electron
 
+**This problem is fixed in Napi-rs**
+
+
 The following is shown:
 
 * Int32Array is transfered correctly in the async case in node environment (18.12.1)
